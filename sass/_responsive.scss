@@ -2,6 +2,11 @@
     header {
         margin:-1rem;
     }
+    .home {
+        &__name {
+            font-size: 5rem;
+        }
+    }
     .menu-btn {
         visibility: hidden;
     }
@@ -73,6 +78,14 @@
         }
         &__item {
             font-size: 1rem;
+        }
+    }
+    main {
+        .social-icon {
+            font-size: 2rem !important;
+            a {
+                padding: 0.5rem !important;
+            }
         }
     }
 }
