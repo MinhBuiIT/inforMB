@@ -1,0 +1,125 @@
+.menu-btn {
+    position: fixed;
+    top: 0.5rem;
+    right: 1rem;
+    width: 28px;
+    height: 22px;
+    z-index: 2;
+    background-color: transparent;
+    &__burger {
+        position: absolute;
+        top: 10px;
+        left: 0;
+        width: 28px;
+        height: 3px;
+        background-color: set-text-color($primary-color);
+        transform: rotate(0);
+        @include TransitionEase;
+        &::before {
+            content: "";
+            position: absolute;
+            top: -8px;
+            right: 0;
+            width: 28px;
+            height: 3px;
+            background-color: set-text-color($primary-color);
+            @include TransitionEase;
+        }
+        &::after {
+            content: "";
+            position: absolute;
+            top: 8px;
+            right: 0;
+            width: 28px;
+            height: 3px;
+            background-color: set-text-color($primary-color);
+        }
+        &.open {
+            transform: rotate(720deg);
+            background-color: transparent;
+            &::before {
+                transform: rotate(45deg) translate(3px, 8.7px);
+            }
+            &::after {
+                transform: rotate(-45deg) translate(3px, -8px);
+            }
+        }
+    }
+}
+.nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 100vh;
+    opacity: 1;
+    z-index: 1;
+    @include TransitionEase;
+    visibility: hidden;
+    &.open {
+        visibility: visible;
+    }
+    .menu-nav {
+        list-style: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-flow: column wrap;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 100%;
+        background-color: $primary-color;
+        transform: translateY(-100%);
+        @include TransitionEase;
+        &.open {
+            transform: translateY(0);
+        }
+        &__item {
+            transform: translateX(100vw);
+            @include TransitionEase;
+            &.open {
+                transform: translateX(0);
+            }
+            &:hover .menu-nav__link::after {
+                transform: translate(-50%,-50%) scale(1);
+                letter-spacing: 0.3rem;
+            }
+            &.active > a {
+                color: $secondary-color;
+            }
+        }
+        &__link {
+            font-size: 2rem;
+            font-weight: 300;
+            color: set-text-color($primary-color);
+            padding: 1.8rem 0;
+            display: inline-block;
+            text-transform: uppercase;
+            &:hover {
+                color: $secondary-color;
+            }
+            &::after {
+                content: attr(data-after);
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%,-50%) scale(0);
+                font-size: 8rem;
+                letter-spacing: 5rem;
+                z-index: -1;
+                color: rgba(240, 248, 255, 0.021);
+                @include transitionItem(letter-spacing);
+                white-space: nowrap;
+            }
+            
+        }
+        
+    }
+}
+@for $i from 1 through 4 {
+    .menu-nav__item:nth-child(#{$i}) {
+        transition-delay: ($i * 0.1s) + 0.15s;
+    }
+}

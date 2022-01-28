@@ -1,0 +1,119 @@
+@include media-tablet {
+    header {
+        margin:-1rem;
+    }
+    .menu-btn {
+        visibility: hidden;
+    }
+    .nav {
+        visibility: visible;
+        position: unset;
+        width: 100vw;
+        height: 100%;
+        padding: 0 1rem;
+        .menu-nav {
+            transform: translateY(6px);
+            position: unset;
+            background-color: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            flex-direction: row;
+            margin-top: -1rem;
+            &__item {
+                transform: translateX(0);
+                display: inline-block;
+                padding: 0 1rem;
+            }
+            &__link {
+                font-size: 1.2rem;
+                color: set-text-color($primary-color);
+                position: relative;
+                &::after {
+                    display: none;
+                }
+                &::before {
+                    content: "";
+                    position: absolute;
+                    top: 70%;
+                    left: 0;
+                    width: 0;
+                    height: 3px;
+                    border-radius: 10px;
+                    background-color: set-text-color($primary-color);
+                    @include transitionItem(width);
+                }
+                &:hover {
+                    &::before {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+    .about__img-des {
+        margin-bottom: 10px;
+        .text-secondary {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        p {
+            line-height: 1.7rem;
+        }
+    }
+    .project__list {
+        grid-template-columns: repeat(2,1fr);
+    }
+    .contact {
+        align-items: center;
+        padding-left: 0;
+        &__list {
+            grid-template-columns: repeat(2,1fr);
+            margin-top: 1.2rem;
+        }
+        &__item {
+            font-size: 1rem;
+        }
+    }
+}
+@include media-PC {
+    .project__img {
+        height: 46vh;
+        h1 {
+            margin-bottom: 2rem;
+            font-size: 2.6rem;
+            letter-spacing: .3rem;
+        }
+    }
+    .project__list {
+        grid-template-columns: repeat(3,1fr);
+        width: 75vw;
+    }
+    .contact {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        padding-left: 10vw;
+        justify-content: center;
+        overflow: hidden;
+        background: linear-gradient(
+            to right,
+            rgba($primary-color,0.92),
+            rgba($primary-color,0.3),
+        ),
+        url(../img/me.jpg) center;
+        background-size: cover;
+    }
+    .contact {
+        align-items: center;
+        padding-left: 0;
+        &__list {
+            grid-template-columns: repeat(3,1fr);
+            margin-top: 2rem;
+        }
+        &__item {
+            font-size: 1.3rem;
+        }
+    }
+}
